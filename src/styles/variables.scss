@@ -11,17 +11,12 @@ css-переменные позволят нам влиять на их знач
 
     /* Цвета проекта */
     --color_main: #fff;
-    --color_secodary: #8caab9;
+    --color_primary: #0083fc;
+    --color_background: #262a2f;
+    --color_background-dark: #1e2028;
 
     /* Шрифты */
-    --fs_xxxxs: 8px;
-    --fs_xxxs: 10px;
-    --fs_xxs: 12px;
-    --fs_xs: 14px;
-    --fs_s: 16px;
+    --fs_s: 14px;
     --fs_m: 18px;
-    --fs_l: 20px;
-    --fs_xl: 22px;
-    --fs_xxl: 24px;
-    --fs_xxxl: 26px;
+    --fs_l: 30px;
 }

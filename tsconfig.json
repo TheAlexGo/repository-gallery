@@ -13,12 +13,9 @@
             "@features/*": ["features/*"],
             "@static/*": ["static/*"],
             "@icons/*": ["static/icons/*"],
-            "@fonts/*": ["static/fonts/*"],
-            "@providers/*": ["providers/*"],
-            "@services/*": ["services/*"],
-            "@pages/*": ["pages/*"],
             "@utils/*": ["utils/*"],
-            "@hooks/*": ["hooks/*"],
+            "@store/*": ["store/*"],
+            "@store": ["store/index.ts"],
             "@types": ["types.ts"]
         }
     },

@@ -1,0 +1,47 @@
+.heading {
+    padding: 0 20px;
+    font-family: Rubik, sans-serif;
+    color: var(--color_main);
+    font-size: var(--fs_l);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.carousel-wrapper {
+    position: relative;
+}
+
+.carousel {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    margin-top: 24px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.prev-item,
+.next-item {
+    position: absolute;
+    top: 50%;
+    z-index: 700;
+    color: var(--color_main);
+    transition: padding 400ms ease-out;
+}
+
+.prev-item {
+    left: 12px;
+    transform: translateY(-50%);
+}
+
+.next-item {
+    right: 12px;
+    transform: translateY(-50%) rotate(180deg);
+}

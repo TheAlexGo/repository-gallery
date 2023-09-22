@@ -17,9 +17,13 @@
         "lint:stylelint:fix": "npx stylelint \"src/{**/*,*}.[s]css\" --fix"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^1.9.5",
         "classnames": "^2.3.2",
         "react": "18.2.0",
-        "react-dom": "18.2.0"
+        "react-dom": "18.2.0",
+        "react-redux": "^8.1.2",
+        "uuid": "^9.0.1",
+        "lodash.debounce": "^4.0.8"
     },
     "devDependencies": {
         "@axe-core/react": "^4.7.3",
@@ -27,8 +31,10 @@
         "@babel/core": "7.22.20",
         "@babel/preset-react": "7.22.15",
         "@svgr/webpack": "^8.1.0",
+        "@types/lodash.debounce": "^4.0.7",
         "@types/react": "18.2.22",
         "@types/react-dom": "18.2.7",
+        "@types/uuid": "^9.0.4",
         "@typescript-eslint/eslint-plugin": "^6.7.2",
         "@typescript-eslint/parser": "^6.7.2",
         "babel-loader": "9.1.3",

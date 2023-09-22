@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 *,
 *::before,
@@ -15,7 +16,7 @@ html,
 body {
     margin: 0;
     padding: 0;
-    background: var(--color_background_dark);
+    background: var(--color_background);
     font-family: Inter, sans-serif;
     font-weight: 400;
 }
@@ -30,7 +31,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
     margin: 0;
 }
 
@@ -48,11 +50,25 @@ ul,
 ol {
     margin: 0;
     padding: 0;
+    list-style: none;
+}
+
+button {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    transition: background-color 300ms;
 }
 
 /* /Системные теги */
 
 #root {
     min-height: 100vh;
-    padding: env(safe-area-inset-top, 0) 16px env(safe-area-inset-bottom, 0);
+    padding: env(safe-area-inset-top, 0) 0 env(safe-area-inset-bottom, 0);
+}
+
+.hidden {
+    @include invisible;
 }

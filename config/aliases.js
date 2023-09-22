@@ -4,14 +4,13 @@ const main = {
     '@components': path.resolve(__dirname, '../src/components'),
     '@features': path.resolve(__dirname, '../src/features'),
     '@utils': path.resolve(__dirname, '../src/utils'),
+    '@store': path.resolve(__dirname, '../src/store'),
 };
 
 const styles = {
     '@styles': path.resolve(__dirname, '../src/styles'),
     '@static': path.resolve(__dirname, '../src/static'),
-    '@images': path.resolve(__dirname, '../src/static/images'),
     '@icons': path.resolve(__dirname, '../src/static/icons'),
-    '@fonts': path.resolve(__dirname, '../src/static/fonts'),
 };
 
 const types = {

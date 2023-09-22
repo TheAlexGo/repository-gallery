@@ -25,7 +25,7 @@ module.exports = {
             version: 'detect',
         },
         // указываем пути для внутренних пакетов
-        'import/internal-regex': main ? `(${Object.keys(main).join('|')})/` : undefined,
+        'import/internal-regex': main ? `(${Object.keys(main).join('|')})` : undefined,
         'import/external-module-folders': ['node_modules'],
     },
     env: {
