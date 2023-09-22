@@ -42,7 +42,7 @@ deploy:
         name: production
     resource_group: production
     script:
-        - rsync -a --delete dist/ alex@135.181.80.44:/home/alex/todo-list
+        - rsync -a --delete dist/ alex@135.181.80.44:/home/alex/repository-gallery
     only:
         - merge_requests
         - master
