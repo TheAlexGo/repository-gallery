@@ -2,9 +2,9 @@ import React, { type FC, type JSX, type SVGProps } from 'react';
 
 import type { TSvgComponent } from '@types';
 
-import StarIcon from '@icons/Star_icon.svg';
 import ArrowIcon from '@icons/arrow_icon.svg';
 import ForkIcon from '@icons/fork_icon.svg';
+import StarIcon from '@icons/star_icon.svg';
 
 export enum Icons {
     ARROW = 'Arrow',
