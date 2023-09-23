@@ -9,9 +9,18 @@
 
 .carousel-wrapper {
     position: relative;
+
+    &.__is-scrolling {
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+        }
+    }
 }
 
 .carousel {
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
     width: 100%;
@@ -21,6 +30,13 @@
     scroll-snap-type: x mandatory;
     -ms-overflow-style: none;
     scrollbar-width: none;
+
+    &.__is-dragging {
+        scroll-behavior: auto;
+        scroll-snap-type: none;
+        user-select: none;
+        cursor: grab;
+    }
 
     &::-webkit-scrollbar {
         display: none;
