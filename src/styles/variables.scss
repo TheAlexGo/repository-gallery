@@ -14,6 +14,8 @@ css-переменные позволят нам влиять на их знач
     --color_primary: #0083fc;
     --color_background: #262a2f;
     --color_background-dark: #1e2028;
+    --color_skeleton: #b5b5b5;
+    --skeleton_gradient: linear-gradient(to right, transparent 0%, rgb(255 255 255 / 80%) 50%, transparent 100%);
 
     /* Шрифты */
     --fs_s: 14px;

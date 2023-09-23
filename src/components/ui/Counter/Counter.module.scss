@@ -7,3 +7,14 @@
     font-size: 14px;
     font-weight: 500;
 }
+
+.icon {
+    flex-shrink: 0;
+}
+
+.counter {
+    &.__is-skeleton {
+        height: 1em;
+        width: 44px;
+    }
+}

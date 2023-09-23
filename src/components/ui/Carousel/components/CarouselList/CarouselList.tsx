@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { CarouselItem } from '@components/Carousel/components/CarouselItem/CarouselItem';
+import { CarouselItem } from '../CarouselItem/CarouselItem';
 
 interface ICarouselList<IItem> {
     items: IItem[];

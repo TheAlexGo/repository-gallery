@@ -2,9 +2,10 @@ import React, { type FC, type JSX, useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from '@components/Button/Button';
-import { Card } from '@components/Card/Card';
-import { Carousel } from '@components/Carousel/Carousel';
+import { CardSkeleton } from '@components/skeleton/CardSkeleton/CardSkeleton';
+import { Button } from '@components/ui/Button/Button';
+import { Card } from '@components/ui/Card/Card';
+import { Carousel } from '@components/ui/Carousel/Carousel';
 import { RepositoryModal } from '@features/repository/RepositoryModal/RepositoryModal';
 import { activeRepositorySelector, repositoryListSelector } from '@features/repository/selectors';
 import { init, setActiveRepository } from '@features/repository/slice';
@@ -34,6 +35,8 @@ export const App: FC = (): JSX.Element => {
         </Button>
     );
 
+    const renderCarouselStubItem = () => <CardSkeleton />;
+
     const request = useCallback((signal: Signal) => getRepositories(signal), []);
     const callback = useCallback((list: IRepository[]) => dispatch(init(list)), [dispatch]);
 
@@ -44,11 +47,14 @@ export const App: FC = (): JSX.Element => {
 
     return (
         <main>
-            <Carousel<IRepository>
-                title="Топ популярных javascript репозиториев"
-                items={repositories}
-                renderItem={renderCarouselItem}
-            />
+            <div className={classes.carousel}>
+                <Carousel<IRepository>
+                    title="Топ популярных javascript репозиториев"
+                    items={repositories}
+                    renderItem={renderCarouselItem}
+                    renderStubItem={renderCarouselStubItem}
+                />
+            </div>
             {activeRepository && <RepositoryModal data={activeRepository} />}
         </main>
     );

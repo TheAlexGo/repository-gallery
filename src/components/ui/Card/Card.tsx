@@ -1,8 +1,8 @@
 import React from 'react';
 import type { FC, JSX } from 'react';
 
-import { Counter } from '@components/Counter/Counter';
-import { Icons } from '@components/Icon/Icon';
+import { Counter } from '@components/ui/Counter/Counter';
+import { Icons } from '@components/ui/Icon/Icon';
 
 import type { IRepository } from '@types';
 

@@ -44,7 +44,7 @@ export const repositoryConvert = (data: IRepositoryResponse): IRepository => ({
 export const getRepositories = async (signal: Signal): Promise<IRepository[]> =>
     (
         await octokit.request('GET /search/repositories', {
-            q: 'stars:>1',
+            q: 'stars:>1 topic:javascript',
             sort: 'stars',
             per_page: REPOSITORIES_PER_PAGE,
             request: {

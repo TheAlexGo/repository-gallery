@@ -3,9 +3,9 @@ import type { FC, JSX } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { Counter } from '@components/Counter/Counter';
-import { Icon, Icons } from '@components/Icon/Icon';
-import { Modal } from '@components/Modal/Modal';
+import { Counter } from '@components/ui/Counter/Counter';
+import { Icon, Icons } from '@components/ui/Icon/Icon';
+import { Modal } from '@components/ui/Modal/Modal';
 import { setActiveRepository } from '@features/repository/slice';
 
 import type { IRepository } from '@types';

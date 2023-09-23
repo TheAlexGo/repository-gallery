@@ -5,9 +5,10 @@ import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Button } from '@components/Button/Button';
-import { CarouselList } from '@components/Carousel/components/CarouselList/CarouselList';
-import { Icon, Icons } from '@components/Icon/Icon';
+import { Button } from '@components/ui/Button/Button';
+import { CarouselItem } from '@components/ui/Carousel/components/CarouselItem/CarouselItem';
+import { CarouselList } from '@components/ui/Carousel/components/CarouselList/CarouselList';
+import { Icon, Icons } from '@components/ui/Icon/Icon';
 
 import classes from './Carousel.module.scss';
 
@@ -15,6 +16,7 @@ interface ICarousel<IItem> {
     title: string;
     items: IItem[];
     renderItem: (item: IItem) => JSX.Element;
+    renderStubItem: () => JSX.Element;
 }
 
 /**
@@ -36,6 +38,7 @@ export const Carousel = <IItem extends { id: string | number }>({
     title,
     items,
     renderItem,
+    renderStubItem,
 }: ICarousel<IItem>): JSX.Element => {
     const [activeItemIndex, setActiveItemIndex] = useState<number>(ACTIVE_ITEM_INDEX);
     const [itemWidth, setItemWidth] = useState(0);
@@ -161,12 +164,15 @@ export const Carousel = <IItem extends { id: string | number }>({
                     onScroll={scrollHandler}
                     ref={scrollRef}
                 >
-                    <CarouselList
-                        items={items}
-                        renderItem={renderItem}
-                        activeItemIndex={activeItemIndex}
-                        cloneItemsCount={CLONE_ITEMS_COUNT}
-                    />
+                    {items.length > 0 && (
+                        <CarouselList
+                            items={items}
+                            renderItem={renderItem}
+                            activeItemIndex={activeItemIndex}
+                            cloneItemsCount={CLONE_ITEMS_COUNT}
+                        />
+                    )}
+                    {items.length === 0 && <CarouselItem>{renderStubItem()}</CarouselItem>}
                 </ul>
                 <div className="hidden" aria-live="polite" aria-atomic="true">
                     {`Слайд ${activeItemIndex + 1} из ${items.length}`}

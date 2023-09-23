@@ -4,8 +4,8 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Button } from '@components/Button/Button';
-import { Icon, Icons } from '@components/Icon/Icon';
+import { Button } from '@components/ui/Button/Button';
+import { Icon, Icons } from '@components/ui/Icon/Icon';
 
 import classes from './Modal.module.scss';
 
