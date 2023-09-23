@@ -30,14 +30,11 @@ export const App: FC = (): JSX.Element => {
     };
 
     const renderCarouselItem = (item: IRepository, isActive: boolean) => {
-        const clickHandler = () => itemClickHandler(item);
+        const clickHandler = () => {
+            itemClickHandler(item);
+        };
         return (
-            <Button
-                className={classes.card}
-                onClick={clickHandler}
-                onMouseUp={clickHandler}
-                tabIndex={isActive ? 0 : -1}
-            >
+            <Button className={classes.card} onClick={clickHandler} tabIndex={isActive ? 0 : -1}>
                 <Card {...item} />
             </Button>
         );

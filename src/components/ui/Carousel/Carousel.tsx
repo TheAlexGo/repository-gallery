@@ -45,6 +45,7 @@ export const Carousel = <IItem extends { id: string | number }>({
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [startScrollLeft, setStartScrollLeft] = useState(0);
+    const [finalScrollLeft, setFinalScrollLeft] = useState(0);
 
     const scrollRef = useRef<HTMLUListElement>(null);
 
@@ -98,11 +99,14 @@ export const Carousel = <IItem extends { id: string | number }>({
         carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
     };
 
-    const dragEnd = (e: MouseEvent) => {
-        setIsDragging(false);
-
+    const dragEnd = () => {
         const carousel = scrollRef.current as HTMLUListElement;
-        if (Math.abs(carousel.scrollLeft - startScrollLeft) > 10) {
+        setFinalScrollLeft(carousel.scrollLeft);
+        setIsDragging(false);
+    };
+
+    const preventClickEvent = (e: MouseEvent) => {
+        if (Math.abs(finalScrollLeft - startScrollLeft) > 10) {
             e.stopPropagation();
         }
     };
@@ -155,12 +159,13 @@ export const Carousel = <IItem extends { id: string | number }>({
                         </Button>
                     </li>
                 </ul>
-                {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+                {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions,jsx-a11y/click-events-have-key-events */}
                 <ul
                     className={carouselClasses}
                     onMouseDown={dragStart}
                     onMouseMove={dragging}
-                    onMouseUpCapture={dragEnd}
+                    onMouseUp={dragEnd}
+                    onClickCapture={preventClickEvent}
                     onScroll={scrollHandler}
                     ref={scrollRef}
                 >
