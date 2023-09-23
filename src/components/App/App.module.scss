@@ -1,3 +1,5 @@
+@import '~@styles/mixins';
+
 .card {
     width: 100%;
     height: 100%;
@@ -5,4 +7,21 @@
 
 .carousel {
     margin-top: 30px;
+}
+
+.carousel-heading {
+    @include useMedia(mobile) {
+        padding: 0 20px;
+    }
+
+    @include useMedia(desktop) {
+        text-align: center;
+    }
+}
+
+.carousel-wrapper {
+    @include useMedia(desktop) {
+        width: 780px;
+        margin: 0 auto;
+    }
 }

@@ -17,6 +17,9 @@ interface ICarousel<IItem> {
     items: IItem[];
     renderItem: (item: IItem, isActive: boolean) => JSX.Element;
     renderStubItem: () => JSX.Element;
+    className?: string;
+    headingClassName?: string;
+    carouselWrapperClassName?: string;
 }
 
 /**
@@ -39,6 +42,9 @@ export const Carousel = <IItem extends { id: string | number }>({
     items,
     renderItem,
     renderStubItem,
+    className,
+    headingClassName,
+    carouselWrapperClassName,
 }: ICarousel<IItem>): JSX.Element => {
     const [activeItemIndex, setActiveItemIndex] = useState<number>(ACTIVE_ITEM_INDEX);
     const [itemWidth, setItemWidth] = useState(0);
@@ -52,6 +58,10 @@ export const Carousel = <IItem extends { id: string | number }>({
     const allItemsCount = 2 * CLONE_ITEMS_COUNT + items.length;
 
     const id = useMemo(() => `carousel-${uuidv4()}`, []);
+
+    const headingClasses = cn(classes.heading, headingClassName);
+
+    const carouselWrapperClasses = cn(classes['carousel-wrapper'], carouselWrapperClassName);
 
     const carouselClasses = cn(classes.carousel, {
         [classes['__is-dragging']]: isDragging,
@@ -142,11 +152,11 @@ export const Carousel = <IItem extends { id: string | number }>({
     }, [items.length, allItemsCount]);
 
     return (
-        <section aria-labelledby={id}>
-            <h1 id={id} className={classes.heading}>
+        <section className={className} aria-labelledby={id}>
+            <h1 id={id} className={headingClasses}>
                 {title}
             </h1>
-            <div className={classes['carousel-wrapper']}>
+            <div className={carouselWrapperClasses}>
                 <ul className={classes.controls}>
                     <li>
                         <Button className={classes['prev-item']} title="Предыдущий слайд" onClick={clickPrevHandler}>

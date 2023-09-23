@@ -4,7 +4,7 @@ import type { IRepository } from '@types';
 
 import type { Signal } from '@octokit/types/dist-types/Signal';
 
-const REPOSITORIES_PER_PAGE = 30;
+const REPOSITORIES_PER_PAGE = 2;
 
 export interface IOwner {
     login: string;

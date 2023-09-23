@@ -90,3 +90,17 @@ button {
         background-position: -100% 0;
     }
 }
+
+@include useMedia(tablet) {
+    main {
+        max-width: 664px;
+        margin: 0 auto;
+    }
+}
+
+@include useMedia(desktop) {
+    main {
+        max-width: 940px;
+        margin: 0 auto;
+    }
+}

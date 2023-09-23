@@ -1,3 +1,5 @@
+@import 'mixins';
+
 /*
 Динамику будем хранить в css-переменных, а статику - в scss.
 css-переменные позволят нам влиять на их значения с помощью классов-модификаторов,
@@ -21,6 +23,11 @@ css-переменные позволят нам влиять на их знач
     --fs_s: 14px;
     --fs_m: 18px;
     --fs_l: 30px;
+
+    /* Высота строки */
+    --lh_s: 18px;
+    --lh_m: 21px;
+    --lh_l: 36px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -31,18 +38,24 @@ css-переменные позволят нам влиять на их знач
     }
 }
 
-@media (width >= 768px) {
+@include useMedia(tablet) {
     :root {
         --fs_s: 18px;
         --fs_m: 30px;
         --fs_l: 40px;
+        --lh_s: 24px;
+        --lh_m: 36px;
+        --lh_l: 47px;
     }
 }
 
-@media (width >= 1280px) {
+@include useMedia(desktop) {
     :root {
         --fs_s: 20px;
         --fs_m: 40px;
         --fs_l: 50px;
+        --lh_s: 26px;
+        --lh_m: 47px;
+        --lh_l: 59px;
     }
 }

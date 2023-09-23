@@ -17,3 +17,40 @@
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
 }
+
+@mixin font($size) {
+    @if $size == s {
+        font-size: var(--fs_s);
+        line-height: var(--lh_s);
+    } @else if $size == m {
+        font-size: var(--fs_m);
+        line-height: var(--lh_m);
+    } @else if $size == l {
+        font-size: var(--fs_l);
+        line-height: var(--lh_l);
+    }
+}
+
+@mixin setTextHeight($size, $rowsCount) {
+    @if $size == s {
+        height: calc(#{$rowsCount} * var(--lh_s));
+    } @else if $size == m {
+        height: calc(#{$rowsCount} * var(--lh_m));
+    } @else if $size == l {
+        height: calc(#{$rowsCount} * var(--lh_l));
+    }
+}
+
+@mixin useMedia($type) {
+    @if $type == mobile {
+        @content;
+    } @else if $type == tablet {
+        @media (width >= 744px) {
+            @content;
+        }
+    } @else if $type == desktop {
+        @media (width >= 1280px) {
+            @content;
+        }
+    }
+}

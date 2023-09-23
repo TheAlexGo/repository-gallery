@@ -1,23 +1,28 @@
+@import '~@styles/mixins';
+
 .author {
+    @include font(s);
+
     font-family: 'Roboto Mono', sans-serif;
     color: var(--color_main);
-    font-size: var(--fs_s);
     font-weight: 500;
 }
 
 .title {
+    @include font(l);
+
     margin-top: 4px;
     font-family: Rubik, sans-serif;
     color: var(--color_main);
-    font-size: var(--fs_l);
     font-weight: 700;
     text-transform: uppercase;
 }
 
 .description {
+    @include font(s);
+
     font-family: 'Roboto Mono', sans-serif;
     color: var(--color_main);
-    font-size: var(--fs_s);
     font-weight: 500;
 }
 
@@ -32,9 +37,10 @@
 }
 
 .link {
+    @include font(s);
+
     font-family: 'Roboto Mono', sans-serif;
     color: var(--color_primary);
-    font-size: var(--fs_s);
     font-weight: 500;
 }
 
@@ -45,12 +51,13 @@
 }
 
 .tag {
+    @include font(s);
+
     padding: 4px 8px;
     border-radius: 8px;
     background-color: var(--color_primary);
     font-family: 'Roboto Mono', sans-serif;
     color: var(--color_white);
-    font-size: var(--fs_s);
     font-weight: 500;
 }
 

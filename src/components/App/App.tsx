@@ -52,14 +52,15 @@ export const App: FC = (): JSX.Element => {
 
     return (
         <main>
-            <div className={classes.carousel}>
-                <Carousel<IRepository>
-                    title="Топ популярных javascript репозиториев"
-                    items={repositories}
-                    renderItem={renderCarouselItem}
-                    renderStubItem={renderCarouselStubItem}
-                />
-            </div>
+            <Carousel<IRepository>
+                className={classes.carousel}
+                headingClassName={classes['carousel-heading']}
+                carouselWrapperClassName={classes['carousel-wrapper']}
+                title="Топ популярных javascript репозиториев"
+                items={repositories}
+                renderItem={renderCarouselItem}
+                renderStubItem={renderCarouselStubItem}
+            />
             <RepositoryModal data={activeRepository} />
         </main>
     );

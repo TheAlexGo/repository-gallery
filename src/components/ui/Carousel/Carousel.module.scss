@@ -1,8 +1,10 @@
+@import '~@styles/mixins';
+
 .heading {
-    padding: 0 20px;
+    @include font(l);
+
     font-family: Rubik, sans-serif;
     color: var(--color_main);
-    font-size: var(--fs_l);
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -56,9 +58,17 @@
 .prev-item {
     left: 4px;
     transform: translateY(-50%);
+
+    @include useMedia(desktop) {
+        left: 20px;
+    }
 }
 
 .next-item {
     right: 4px;
     transform: translateY(-50%) rotate(180deg);
+
+    @include useMedia(desktop) {
+        right: 20px;
+    }
 }

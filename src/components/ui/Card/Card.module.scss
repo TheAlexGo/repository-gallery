@@ -2,30 +2,42 @@
 
 .wrapper {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 44px;
+    background-color: var(--color_background-dark);
+
+    @include useMedia(desktop) {
+        padding: 30px 80px;
+    }
+}
+
+.content {
+    display: flex;
     flex-direction: column;
     gap: 8px;
     width: 100%;
-    height: 100%;
-    padding: 20px 44px;
-    background-color: var(--color_background-dark);
 }
 
 .heading {
-    @include multieEllip(1, var(--fs_m));
+    @include multieEllip(1, var(--lh_m));
+    @include font(m);
+    @include setTextHeight(m, 1);
 
     font-family: Rubik, sans-serif;
     color: var(--color_primary);
-    font-size: var(--fs_m);
     font-weight: 700;
     text-transform: uppercase;
 }
 
 .description {
-    @include multieEllip(4, var(--fs_m));
+    @include multieEllip(4, var(--lh_s));
+    @include font(s);
+    @include setTextHeight(s, 4);
 
     font-family: 'Roboto Mono', sans-serif;
     color: var(--color_main);
-    font-size: var(--fs_s);
     font-weight: 500;
 }
 
@@ -34,4 +46,16 @@
     flex-flow: row;
     gap: 16px;
     color: var(--color_main);
+
+    @include useMedia(tablet) {
+        & {
+            gap: 20px;
+        }
+    }
+
+    @include useMedia(desktop) {
+        & {
+            gap: 20px;
+        }
+    }
 }

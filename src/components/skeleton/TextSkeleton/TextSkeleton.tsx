@@ -13,10 +13,11 @@ interface ITextSkeleton {
 }
 
 export const TextSkeleton: FC<ITextSkeleton> = ({ className, rowsCount }): JSX.Element => {
-    const rowClasses = cn(classes.row, 'skeleton-gradient', className);
+    const wrapperClasses = cn(classes.wrapper, className);
+    const rowClasses = cn(classes.row, 'skeleton-gradient');
 
     return (
-        <div className={classes.text}>
+        <div className={wrapperClasses}>
             {repeat(
                 (i) => (
                     <span key={i} className={rowClasses} />
