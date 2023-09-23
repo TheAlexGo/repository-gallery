@@ -1,0 +1,60 @@
+.author {
+    font-family: 'Roboto Mono', sans-serif;
+    color: var(--color_main);
+    font-size: var(--fs_s);
+    font-weight: 500;
+}
+
+.title {
+    margin-top: 4px;
+    font-family: Rubik, sans-serif;
+    color: var(--color_main);
+    font-size: var(--fs_l);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.description {
+    font-family: 'Roboto Mono', sans-serif;
+    color: var(--color_main);
+    font-size: var(--fs_s);
+    font-weight: 500;
+}
+
+.link-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.link-icon {
+    color: var(--color_white);
+}
+
+.link {
+    font-family: 'Roboto Mono', sans-serif;
+    color: var(--color_primary);
+    font-size: var(--fs_s);
+    font-weight: 500;
+}
+
+.tags {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 4px;
+}
+
+.tag {
+    padding: 4px 8px;
+    border-radius: 8px;
+    background-color: var(--color_primary);
+    font-family: 'Roboto Mono', sans-serif;
+    color: var(--color_main);
+    font-size: var(--fs_s);
+    font-weight: 500;
+}
+
+.achievements {
+    display: flex;
+    gap: 16px;
+}

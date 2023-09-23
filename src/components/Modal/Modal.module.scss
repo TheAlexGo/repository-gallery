@@ -1,0 +1,23 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    padding: 20px;
+    background-color: var(--color_background-dark);
+    z-index: 10;
+}
+
+.window {
+    position: relative;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.close {
+    margin-left: auto;
+    color: var(--color_white);
+}

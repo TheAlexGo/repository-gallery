@@ -1,47 +1,6 @@
-@import '~@styles/mixins';
-
 .item {
     flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
     width: 100%;
     height: 172px;
-    padding: 20px 44px;
-    background-color: var(--color_background-dark);
     scroll-snap-align: center;
-}
-
-.heading {
-    font-family: Rubik, sans-serif;
-    color: var(--color_primary);
-    font-size: var(--fs_m);
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.description {
-    @include multieEllip(4, 18px);
-
-    font-family: 'Roboto Mono', sans-serif;
-    color: var(--color_main);
-    font-size: var(--fs_s);
-    font-weight: 500;
-}
-
-.footer {
-    display: flex;
-    flex-flow: row;
-    gap: 16px;
-    color: var(--color_main);
-}
-
-.footer-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-family: 'Roboto Mono', sans-serif;
-    color: var(--color_main);
-    font-size: 14px;
-    font-weight: 500;
 }

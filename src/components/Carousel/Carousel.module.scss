@@ -47,17 +47,18 @@
 .next-item {
     position: absolute;
     top: 50%;
-    z-index: 700;
+    z-index: 1;
+    padding: 8px;
     color: var(--color_main);
     transition: padding 400ms ease-out;
 }
 
 .prev-item {
-    left: 12px;
+    left: 4px;
     transform: translateY(-50%);
 }
 
 .next-item {
-    right: 12px;
+    right: 4px;
     transform: translateY(-50%) rotate(180deg);
 }
