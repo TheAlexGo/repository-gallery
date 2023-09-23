@@ -16,7 +16,7 @@ export const CarouselItem: FC<PropsWithChildren<CarouselItemProps>> = ({
     const ariaHiddenValue = (!isActive).toString() as AriaAttributes['aria-hidden'];
 
     return (
-        <li className={classes.item} tabIndex={-1} aria-hidden={ariaHiddenValue} data-is-clone={isClone.toString()}>
+        <li className={classes.item} aria-hidden={ariaHiddenValue} data-is-clone={isClone.toString()}>
             {children}
         </li>
     );

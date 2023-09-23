@@ -1,7 +1,8 @@
-import type { FC, JSX, PropsWithChildren } from 'react';
-import React from 'react';
+import type { FC, JSX } from 'react';
+import React, { useMemo, useRef } from 'react';
 
 import { createPortal } from 'react-dom';
+import { CSSTransition } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Button } from '@components/ui/Button/Button';
@@ -12,46 +13,59 @@ import classes from './Modal.module.scss';
 interface IModal {
     isOpen: boolean;
     onClose: VoidFunction;
-    title?: JSX.Element;
-    description?: JSX.Element;
+    renderTitle?: () => JSX.Element | null;
+    renderDescription?: () => JSX.Element | null;
+    renderContent?: () => JSX.Element | null;
 }
 
-export const Modal: FC<PropsWithChildren<IModal>> = ({
-    title,
-    description,
+export const Modal: FC<IModal> = ({
+    renderTitle,
+    renderDescription,
     isOpen,
     onClose,
-    children,
+    renderContent,
 }): JSX.Element | null => {
-    const uuid = uuidv4();
+    const uuid = useMemo(() => uuidv4(), []);
     const modalId = `modal-${uuid}`;
     const modalLabelId = `modal-label-${uuid}`;
     const modalDescriptionId = `modal-description-${uuid}`;
 
-    if (!isOpen) {
-        return null;
-    }
+    const modalRef = useRef<HTMLDivElement>(null);
 
     return createPortal(
-        <div className={classes.overlay}>
-            <div
-                id={modalId}
-                className={classes.window}
-                role="dialog"
-                aria-labelledby={modalLabelId}
-                aria-describedby={modalDescriptionId}
-                aria-modal="true"
-            >
-                <Button className={classes.close} onClick={onClose}>
-                    <Icon icon={Icons.CLOSE} />
-                </Button>
-                <div className={classes.content}>
-                    {title && <h2 id={modalLabelId}>{title}</h2>}
-                    {description && <p id={modalDescriptionId}>{description}</p>}
-                    {children}
+        <CSSTransition
+            in={isOpen}
+            mountOnEnter
+            unmountOnExit
+            timeout={300}
+            nodeRef={modalRef}
+            classNames={{
+                enter: classes['window-enter'],
+                enterActive: classes['window-enter-active'],
+                exit: classes['window-exit'],
+                exitActive: classes['window-exit-active'],
+            }}
+        >
+            <div className={classes.overlay} ref={modalRef}>
+                <div
+                    id={modalId}
+                    className={classes.window}
+                    role="dialog"
+                    aria-labelledby={modalLabelId}
+                    aria-describedby={modalDescriptionId}
+                    aria-modal="true"
+                >
+                    <Button className={classes.close} onClick={onClose} title="Закрыть окно">
+                        <Icon icon={Icons.CLOSE} />
+                    </Button>
+                    <div className={classes.content}>
+                        {renderTitle && <h2 id={modalLabelId}>{renderTitle()}</h2>}
+                        {renderDescription && <p id={modalDescriptionId}>{renderDescription()}</p>}
+                        {renderContent && renderContent()}
+                    </div>
                 </div>
             </div>
-        </div>,
+        </CSSTransition>,
         document.getElementById('modal')!,
     );
 };

@@ -1,6 +1,6 @@
 @mixin multieEllip($countOfLine, $lineHeight) {
     /* fallback */
-    max-height: $countOfLine * $lineHeight;
+    max-height: calc(#{$countOfLine} * #{$lineHeight});
     display: block;
     display: -webkit-box;
     overflow: hidden;

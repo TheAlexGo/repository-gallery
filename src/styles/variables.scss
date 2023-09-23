@@ -10,7 +10,7 @@ css-переменные позволят нам влиять на их знач
     --color_black: #000;
 
     /* Цвета проекта */
-    --color_main: #fff;
+    --color_main: var(--color_white);
     --color_primary: #0083fc;
     --color_background: #262a2f;
     --color_background-dark: #1e2028;
@@ -21,4 +21,20 @@ css-переменные позволят нам влиять на их знач
     --fs_s: 14px;
     --fs_m: 18px;
     --fs_l: 30px;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color_main: var(--color_black);
+        --color_background: var(--color_white);
+        --color_background-dark: #eaeaea;
+    }
+}
+
+@media (width >= 768px) {
+    :root {
+        --fs_s: 18px;
+        --fs_m: 30px;
+        --fs_l: 40px;
+    }
 }

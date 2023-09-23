@@ -15,7 +15,7 @@ import classes from './Carousel.module.scss';
 interface ICarousel<IItem> {
     title: string;
     items: IItem[];
-    renderItem: (item: IItem) => JSX.Element;
+    renderItem: (item: IItem, isActive: boolean) => JSX.Element;
     renderStubItem: () => JSX.Element;
 }
 

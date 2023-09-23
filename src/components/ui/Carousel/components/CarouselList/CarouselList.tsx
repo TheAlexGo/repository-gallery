@@ -7,7 +7,7 @@ import { CarouselItem } from '../CarouselItem/CarouselItem';
 
 interface ICarouselList<IItem> {
     items: IItem[];
-    renderItem: (item: IItem) => JSX.Element;
+    renderItem: (item: IItem, isActive: boolean) => JSX.Element;
     cloneItemsCount: number;
     activeItemIndex: number;
 }
@@ -20,7 +20,7 @@ const CarouselListRaw = <IItem extends { id: string | number }>({
 }: ICarouselList<IItem>): JSX.Element => {
     const renderCloneItem = (item: IItem) => (
         <CarouselItem key={uuidv4()} {...item} isClone>
-            {renderItem(item)}
+            {renderItem(item, false)}
         </CarouselItem>
     );
 
@@ -38,7 +38,7 @@ const CarouselListRaw = <IItem extends { id: string | number }>({
             {renderCloneItems(true)}
             {items.map((item, index) => (
                 <CarouselItem key={item.id} {...item} isActive={index === activeItemIndex}>
-                    {renderItem(item)}
+                    {renderItem(item, index === activeItemIndex)}
                 </CarouselItem>
             ))}
             {renderCloneItems(false)}

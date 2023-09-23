@@ -13,48 +13,83 @@ import type { IRepository } from '@types';
 import classes from './RepositoryModal.module.scss';
 
 interface IRepositoryModal {
-    data: IRepository;
+    data: IRepository | null;
 }
 
 export const RepositoryModal: FC<IRepositoryModal> = ({ data }): JSX.Element => {
-    const { author, title, description, link, tags, starsCount, forksCount } = data;
-
     const dispatch = useDispatch();
 
     const modalCloseHandler = () => {
         dispatch(setActiveRepository(null));
     };
 
-    const renderTitle = () => (
-        <>
-            {author && <div className={classes.author}>{author}</div>}
-            <div className={classes.title}>{title}</div>
-        </>
-    );
+    const getLinkText = () => {
+        if (!data) {
+            return null;
+        }
+        const { link } = data;
+        return link?.replace('http://', '').replace('https://', '').replaceAll('/', '');
+    };
 
-    const renderDescription = () => <span className={classes.description}>{description}</span>;
+    const renderTitle = () => {
+        if (!data) {
+            return null;
+        }
+        const { author, title } = data;
+        return (
+            <>
+                {author && <div className={classes.author}>{author}</div>}
+                <div className={classes.title}>{title}</div>
+            </>
+        );
+    };
+
+    const renderDescription = () => {
+        if (!data) {
+            return null;
+        }
+        const { description } = data;
+        return <span className={classes.description}>{description}</span>;
+    };
+
+    const renderContent = () => {
+        if (!data) {
+            return null;
+        }
+
+        const { link, tags, starsCount, forksCount } = data;
+        return (
+            <>
+                {link && (
+                    <div className={classes['link-container']}>
+                        <Icon className={classes['link-icon']} icon={Icons.LINK} />
+                        <a className={classes.link} href={link}>
+                            {getLinkText()}
+                        </a>
+                    </div>
+                )}
+                <ul className={classes.tags}>
+                    {tags.map((tag) => (
+                        <li key={tag} className={classes.tag}>
+                            {tag}
+                        </li>
+                    ))}
+                </ul>
+                <div className={classes.achievements}>
+                    <Counter icon={Icons.STAR} count={starsCount} />
+                    <Counter icon={Icons.FORK} count={forksCount} />
+                </div>
+            </>
+        );
+    };
 
     return (
-        <Modal isOpen onClose={modalCloseHandler} title={renderTitle()} description={renderDescription()}>
-            {link && (
-                <div className={classes['link-container']}>
-                    <Icon className={classes['link-icon']} icon={Icons.LINK} />
-                    <a className={classes.link} href={link}>
-                        {link.replace('https://', '')}
-                    </a>
-                </div>
-            )}
-            <ul className={classes.tags}>
-                {tags.map((tag) => (
-                    <li key={tag} className={classes.tag}>
-                        {tag}
-                    </li>
-                ))}
-            </ul>
-            <div className={classes.achievements}>
-                <Counter icon={Icons.STAR} count={starsCount} />
-                <Counter icon={Icons.FORK} count={forksCount} />
-            </div>
-        </Modal>
+        <Modal
+            isOpen={data !== null}
+            onClose={modalCloseHandler}
+            renderTitle={renderTitle}
+            renderDescription={renderDescription}
+            renderContent={renderContent}
+        />
     );
 };

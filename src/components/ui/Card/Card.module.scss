@@ -11,7 +11,7 @@
 }
 
 .heading {
-    @include multieEllip(1, 18px);
+    @include multieEllip(1, var(--fs_m));
 
     font-family: Rubik, sans-serif;
     color: var(--color_primary);
@@ -21,7 +21,7 @@
 }
 
 .description {
-    @include multieEllip(4, 18px);
+    @include multieEllip(4, var(--fs_m));
 
     font-family: 'Roboto Mono', sans-serif;
     color: var(--color_main);

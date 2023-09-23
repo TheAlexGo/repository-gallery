@@ -29,11 +29,19 @@ export const App: FC = (): JSX.Element => {
         dispatch(setActiveRepository(item));
     };
 
-    const renderCarouselItem = (item: IRepository) => (
-        <Button className={classes.card} onMouseUp={() => itemClickHandler(item)} tabIndex={-1}>
-            <Card {...item} />
-        </Button>
-    );
+    const renderCarouselItem = (item: IRepository, isActive: boolean) => {
+        const clickHandler = () => itemClickHandler(item);
+        return (
+            <Button
+                className={classes.card}
+                onClick={clickHandler}
+                onMouseUp={clickHandler}
+                tabIndex={isActive ? 0 : -1}
+            >
+                <Card {...item} />
+            </Button>
+        );
+    };
 
     const renderCarouselStubItem = () => <CardSkeleton />;
 
@@ -55,7 +63,7 @@ export const App: FC = (): JSX.Element => {
                     renderStubItem={renderCarouselStubItem}
                 />
             </div>
-            {activeRepository && <RepositoryModal data={activeRepository} />}
+            <RepositoryModal data={activeRepository} />
         </main>
     );
 };
