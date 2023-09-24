@@ -77,7 +77,14 @@ module.exports = {
                 test: /\.svg$/i,
                 issuer: /\.[jt]sx?$/,
                 resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
-                use: ['@svgr/webpack'],
+                use: [
+                    {
+                        loader: '@svgr/webpack',
+                        options: {
+                            icon: true,
+                        },
+                    },
+                ],
             },
             {
                 test: /\.(ts|tsx)$/,

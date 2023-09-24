@@ -26,7 +26,7 @@ const icons: Record<Icons, TSvgComponent> = {
 
 interface IIcon extends SVGProps<SVGSVGElement> {
     icon: Icons;
-    size?: number;
+    size?: number | string;
     isCustomSize?: boolean;
 }
 

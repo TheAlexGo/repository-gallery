@@ -1,7 +1,7 @@
 @import '~@styles/mixins';
 
 .heading {
-    @include font(l);
+    @include font(xl);
 
     font-family: Rubik, sans-serif;
     color: var(--color_main);
@@ -11,6 +11,7 @@
 
 .carousel-wrapper {
     position: relative;
+    margin-top: 24px;
 
     &.__is-scrolling {
         &::after {
@@ -19,6 +20,14 @@
             inset: 0;
         }
     }
+
+    @include useMedia(tablet) {
+        margin-top: 30px;
+    }
+
+    @include useMedia(desktop) {
+        margin-top: 60px;
+    }
 }
 
 .carousel {
@@ -26,7 +35,6 @@
     display: flex;
     flex-flow: row nowrap;
     width: 100%;
-    margin-top: 24px;
     overflow-x: scroll;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
@@ -59,7 +67,7 @@
     left: 4px;
     transform: translateY(-50%);
 
-    @include useMedia(desktop) {
+    @include useMedia(tablet) {
         left: 20px;
     }
 }
@@ -68,7 +76,7 @@
     right: 4px;
     transform: translateY(-50%) rotate(180deg);
 
-    @include useMedia(desktop) {
+    @include useMedia(tablet) {
         right: 20px;
     }
 }

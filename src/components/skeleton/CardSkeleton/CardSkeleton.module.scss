@@ -10,9 +10,7 @@
     background-color: var(--color_background-dark);
 
     @include useMedia(tablet) {
-        & {
-            padding: 30px 54px;
-        }
+        padding: 30px 54px;
     }
 }
 

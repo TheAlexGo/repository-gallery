@@ -19,7 +19,10 @@
 }
 
 @mixin font($size) {
-    @if $size == s {
+    @if $size == xs {
+        font-size: var(--fs_xs);
+        line-height: var(--lh_xs);
+    } @else if $size == s {
         font-size: var(--fs_s);
         line-height: var(--lh_s);
     } @else if $size == m {
@@ -28,6 +31,9 @@
     } @else if $size == l {
         font-size: var(--fs_l);
         line-height: var(--lh_l);
+    } @else if $size == xl {
+        font-size: var(--fs_xl);
+        line-height: var(--lh_xl);
     }
 }
 

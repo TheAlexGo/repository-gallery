@@ -56,7 +56,7 @@ export const Modal: FC<IModal> = ({
                     aria-modal="true"
                 >
                     <Button className={classes.close} onClick={onClose} title="Закрыть окно">
-                        <Icon icon={Icons.CLOSE} />
+                        <Icon icon={Icons.CLOSE} size="100%" />
                     </Button>
                     <div className={classes.content}>
                         {renderTitle && <h2 id={modalLabelId}>{renderTitle()}</h2>}

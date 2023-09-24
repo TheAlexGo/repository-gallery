@@ -8,6 +8,10 @@
     padding: 20px 44px;
     background-color: var(--color_background-dark);
 
+    @include useMedia(tablet) {
+        padding: 30px 104px;
+    }
+
     @include useMedia(desktop) {
         padding: 30px 80px;
     }
@@ -48,14 +52,6 @@
     color: var(--color_main);
 
     @include useMedia(tablet) {
-        & {
-            gap: 20px;
-        }
-    }
-
-    @include useMedia(desktop) {
-        & {
-            gap: 20px;
-        }
+        gap: 20px;
     }
 }

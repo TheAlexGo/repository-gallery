@@ -1,7 +1,7 @@
 @import '~@styles/mixins';
 
 .author {
-    @include font(s);
+    @include font(xs);
 
     font-family: 'Roboto Mono', sans-serif;
     color: var(--color_main);
@@ -51,7 +51,7 @@
 }
 
 .tag {
-    @include font(s);
+    @include font(xs);
 
     padding: 4px 8px;
     border-radius: 8px;
