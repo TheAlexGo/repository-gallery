@@ -4,7 +4,7 @@ import type { IRepository } from '@types';
 
 import type { Signal } from '@octokit/types/dist-types/Signal';
 
-const REPOSITORIES_PER_PAGE = 2;
+const REPOSITORIES_PER_PAGE = 30;
 
 export interface IOwner {
     login: string;
@@ -31,7 +31,7 @@ export const repositoryConvert = (data: IRepositoryResponse): IRepository => ({
     title: data.name,
     author: data.owner?.login || null,
     description: data.description,
-    link: data.homepage,
+    link: data.homepage || data.html_url,
     tags: data.topics || [],
     starsCount: data.stargazers_count,
     forksCount: data.forks_count,

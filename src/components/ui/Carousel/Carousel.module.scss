@@ -80,3 +80,9 @@
         right: 20px;
     }
 }
+
+.live-region {
+    @include invisible;
+
+    color: var(--color_main);
+}

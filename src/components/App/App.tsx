@@ -3,12 +3,12 @@ import React, { type FC, type JSX, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CardSkeleton } from '@components/skeleton/CardSkeleton/CardSkeleton';
-import { Button } from '@components/ui/Button/Button';
-import { Card } from '@components/ui/Card/Card';
-import { Carousel } from '@components/ui/Carousel/Carousel';
 import { RepositoryModal } from '@features/repository/RepositoryModal/RepositoryModal';
 import { activeRepositorySelector, repositoryListSelector } from '@features/repository/selectors';
 import { init, setActiveRepository } from '@features/repository/slice';
+import { Button } from '@ui/Button/Button';
+import { Card } from '@ui/Card/Card';
+import { Carousel } from '@ui/Carousel/Carousel';
 import { getRepositories } from '@utils/api';
 
 import type { IRepository } from '@types';
@@ -34,7 +34,12 @@ export const App: FC = (): JSX.Element => {
             itemClickHandler(item);
         };
         return (
-            <Button className={classes.card} onClick={clickHandler} tabIndex={isActive ? 0 : -1}>
+            <Button
+                className={classes.card}
+                onClick={clickHandler}
+                tabIndex={isActive ? 0 : -1}
+                title={`Узнать больше о ${item.title}?`}
+            >
                 <Card {...item} />
             </Button>
         );
@@ -43,11 +48,11 @@ export const App: FC = (): JSX.Element => {
     const renderCarouselStubItem = () => <CardSkeleton />;
 
     const request = useCallback((signal: Signal) => getRepositories(signal), []);
-    const callback = useCallback((list: IRepository[]) => dispatch(init(list)), [dispatch]);
 
-    useRequest<IRepository[]>({
-        request,
-        callback,
+    useRequest<IRepository[]>(request).then((list) => {
+        if (list) {
+            dispatch(init(list));
+        }
     });
 
     return (

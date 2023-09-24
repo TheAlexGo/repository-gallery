@@ -1,8 +1,8 @@
 import React from 'react';
 import type { FC, JSX } from 'react';
 
-import { Counter } from '@components/ui/Counter/Counter';
-import { Icons } from '@components/ui/Icon/Icon';
+import { Counter } from '@ui/Counter/Counter';
+import { Icons } from '@ui/Icon/Icon';
 
 import type { IRepository } from '@types';
 
@@ -16,8 +16,8 @@ export const Card: FC<ICard> = ({ title, description, starsCount, forksCount }):
             <h2 className={classes.heading}>{title}</h2>
             <p className={classes.description}>{description}</p>
             <div className={classes.footer}>
-                <Counter icon={Icons.STAR} count={starsCount} />
-                <Counter icon={Icons.FORK} count={forksCount} />
+                <Counter icon={Icons.STAR} count={starsCount} title="Количество звёзд" />
+                <Counter icon={Icons.FORK} count={forksCount} title="Количество форков" />
             </div>
         </div>
     </article>

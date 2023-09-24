@@ -5,10 +5,10 @@ import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Button } from '@components/ui/Button/Button';
-import { CarouselItem } from '@components/ui/Carousel/components/CarouselItem/CarouselItem';
-import { CarouselList } from '@components/ui/Carousel/components/CarouselList/CarouselList';
-import { Icon, Icons } from '@components/ui/Icon/Icon';
+import { Button } from '@ui/Button/Button';
+import { CarouselItem } from '@ui/Carousel/components/CarouselItem/CarouselItem';
+import { CarouselList } from '@ui/Carousel/components/CarouselList/CarouselList';
+import { Icon, Icons } from '@ui/Icon/Icon';
 
 import classes from './Carousel.module.scss';
 
@@ -189,7 +189,7 @@ export const Carousel = <IItem extends { id: string | number }>({
                     )}
                     {items.length === 0 && <CarouselItem>{renderStubItem()}</CarouselItem>}
                 </ul>
-                <div className="hidden" aria-live="polite" aria-atomic="true">
+                <div className={classes['live-region']} aria-live="polite" aria-atomic="true">
                     {`Слайд ${activeItemIndex + 1} из ${items.length}`}
                 </div>
             </div>

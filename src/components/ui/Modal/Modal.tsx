@@ -1,12 +1,11 @@
-import React, { useLayoutEffect, useMemo, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import type { FC, JSX } from 'react';
 
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
-import { v4 as uuidv4 } from 'uuid';
 
-import { Button } from '@components/ui/Button/Button';
-import { Icon, Icons } from '@components/ui/Icon/Icon';
+import { ModalContent } from '@ui/Modal/components/ModalContent/ModalContent';
+import { DISABLED_SCROLL_MODIFIER } from '@utils/dom';
 
 import classes from './Modal.module.scss';
 
@@ -27,20 +26,15 @@ export const Modal: FC<IModal> = ({
     onExited,
     renderContent,
 }): JSX.Element | null => {
-    const uuid = useMemo(() => uuidv4(), []);
-    const modalId = `modal-${uuid}`;
-    const modalLabelId = `modal-label-${uuid}`;
-    const modalDescriptionId = `modal-description-${uuid}`;
+    const overlayRef = useRef<HTMLDivElement>(null);
 
-    const modalRef = useRef<HTMLDivElement>(null);
-
+    /**
+     * Отключаем глобальный скролл
+     */
     useLayoutEffect(() => {
-        if (isOpen) {
-            document.documentElement.style.overflow = 'hidden';
-        } else {
-            document.documentElement.style.overflow = 'auto';
-        }
-    }, [isOpen]);
+        document.body.classList.add(DISABLED_SCROLL_MODIFIER);
+        return () => document.body.classList.remove(DISABLED_SCROLL_MODIFIER);
+    }, []);
 
     return createPortal(
         <CSSTransition
@@ -48,7 +42,7 @@ export const Modal: FC<IModal> = ({
             mountOnEnter
             unmountOnExit
             timeout={300}
-            nodeRef={modalRef}
+            nodeRef={overlayRef}
             classNames={{
                 enter: classes['window-enter'],
                 enterActive: classes['window-enter-active'],
@@ -57,24 +51,13 @@ export const Modal: FC<IModal> = ({
             }}
             onExited={onExited}
         >
-            <div className={classes.overlay} ref={modalRef}>
-                <div
-                    id={modalId}
-                    className={classes.window}
-                    role="dialog"
-                    aria-labelledby={modalLabelId}
-                    aria-describedby={modalDescriptionId}
-                    aria-modal="true"
-                >
-                    <Button className={classes.close} onClick={onClose} title="Закрыть окно">
-                        <Icon icon={Icons.CLOSE} size="100%" />
-                    </Button>
-                    <div className={classes.content}>
-                        {renderTitle && <h2 id={modalLabelId}>{renderTitle()}</h2>}
-                        {renderDescription && <p id={modalDescriptionId}>{renderDescription()}</p>}
-                        {renderContent && renderContent()}
-                    </div>
-                </div>
+            <div className={classes.overlay} ref={overlayRef}>
+                <ModalContent
+                    onClose={onClose}
+                    renderTitle={renderTitle}
+                    renderDescription={renderDescription}
+                    renderContent={renderContent}
+                />
             </div>
         </CSSTransition>,
         document.getElementById('modal')!,

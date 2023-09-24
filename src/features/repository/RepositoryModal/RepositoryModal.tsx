@@ -3,10 +3,10 @@ import type { FC, JSX } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { Counter } from '@components/ui/Counter/Counter';
-import { Icon, Icons } from '@components/ui/Icon/Icon';
-import { Modal } from '@components/ui/Modal/Modal';
 import { setActiveRepository } from '@features/repository/slice';
+import { Counter } from '@ui/Counter/Counter';
+import { Icon, Icons } from '@ui/Icon/Icon';
+import { Modal } from '@ui/Modal/Modal';
 
 import type { IRepository } from '@types';
 
@@ -43,8 +43,16 @@ export const RepositoryModal: FC<IRepositoryModal> = ({ data }): JSX.Element => 
         const { author, title } = data;
         return (
             <>
-                {author && <div className={classes.author}>{author}</div>}
-                <div className={classes.title}>{title}</div>
+                {author && (
+                    <div className={classes.author}>
+                        <span className="hidden">Автор: </span>
+                        {author}
+                    </div>
+                )}
+                <div className={classes.title}>
+                    <span className="hidden">Название: </span>
+                    {title}
+                </div>
             </>
         );
     };
@@ -54,7 +62,12 @@ export const RepositoryModal: FC<IRepositoryModal> = ({ data }): JSX.Element => 
             return null;
         }
         const { description } = data;
-        return <span className={classes.description}>{description}</span>;
+        return (
+            <span className={classes.description}>
+                <span className="hidden">Описание: </span>
+                {description}
+            </span>
+        );
     };
 
     const renderContent = () => {
@@ -67,22 +80,25 @@ export const RepositoryModal: FC<IRepositoryModal> = ({ data }): JSX.Element => 
             <>
                 {link && (
                     <div className={classes['link-container']}>
-                        <Icon className={classes['link-icon']} icon={Icons.LINK} />
-                        <a className={classes.link} href={link}>
+                        <Icon className={classes['link-icon']} icon={Icons.LINK} aria-label="Ссылка на проект" />
+                        <a className={classes.link} href={link} target="_blank" rel="noreferrer">
                             {getLinkText()}
                         </a>
                     </div>
                 )}
-                <ul className={classes.tags}>
-                    {tags.map((tag) => (
-                        <li key={tag} className={classes.tag}>
-                            {tag}
-                        </li>
-                    ))}
-                </ul>
+                <div>
+                    <span className="hidden">Теги: </span>
+                    <ul className={classes.tags}>
+                        {tags.map((tag) => (
+                            <li key={tag} className={classes.tag}>
+                                {tag}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
                 <div className={classes.achievements}>
-                    <Counter icon={Icons.STAR} count={starsCount} />
-                    <Counter icon={Icons.FORK} count={forksCount} />
+                    <Counter icon={Icons.STAR} count={starsCount} title="Количество звёзд" />
+                    <Counter icon={Icons.FORK} count={forksCount} title="Количество форков" />
                 </div>
             </>
         );

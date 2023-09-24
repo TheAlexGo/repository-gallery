@@ -1,19 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { Signal } from '@octokit/types/dist-types/Signal';
 
-export interface IUseRequest<T> {
-    request: (signal: Signal) => Promise<T>;
-    callback: (item: T) => void;
-}
+type TRequest<T> = (signal: Signal) => Promise<T>;
 
-export const useRequest = <T>({ request, callback }: IUseRequest<T>) => {
+export const useRequest = <T>(request: TRequest<T>): Promise<T | null> => {
+    const [response, setResponse] = useState<Promise<T | null>>(Promise.resolve(null));
+
     useEffect(() => {
         const controller = new AbortController();
 
         request(controller.signal)
             .then((data: T) => {
-                callback(data);
+                setResponse(Promise.resolve(data));
             })
             .catch((error) => {
                 if (error.name === 'AbortError') {
@@ -28,5 +27,7 @@ export const useRequest = <T>({ request, callback }: IUseRequest<T>) => {
         return () => {
             controller.abort();
         };
-    }, [callback, request]);
+    }, [request]);
+
+    return response;
 };
