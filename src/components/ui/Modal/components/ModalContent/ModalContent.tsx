@@ -1,5 +1,5 @@
 import type { FC, JSX } from 'react';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -22,7 +22,7 @@ export const ModalContent: FC<IModalContent> = ({
     renderDescription,
     renderContent,
 }): JSX.Element => {
-    const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
     const uuid = useMemo(() => uuidv4(), []);
     const modalId = `modal-${uuid}`;
     const modalLabelId = `modal-label-${uuid}`;
@@ -44,7 +44,7 @@ export const ModalContent: FC<IModalContent> = ({
         return <p id={modalDescriptionId}>{renderDescription()}</p>;
     };
 
-    useFocusTrap(contentRef);
+    useFocusTrap(contentRef.current);
 
     return (
         <div
@@ -54,7 +54,7 @@ export const ModalContent: FC<IModalContent> = ({
             aria-labelledby={modalLabelId}
             aria-describedby={modalDescriptionId}
             aria-modal="true"
-            ref={setContentRef}
+            ref={contentRef}
         >
             <Button className={classes.close} onClick={onClose} title="Закрыть окно">
                 <Icon icon={Icons.CLOSE} size="100%" />
