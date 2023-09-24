@@ -6,14 +6,13 @@ import { CardSkeleton } from '@components/skeleton/CardSkeleton/CardSkeleton';
 import { RepositoryModal } from '@features/repository/RepositoryModal/RepositoryModal';
 import { activeRepositorySelector, repositoryListSelector } from '@features/repository/selectors';
 import { init, setActiveRepository } from '@features/repository/slice';
+import { useRequest } from '@hooks/useRequest';
 import { Button } from '@ui/Button/Button';
 import { Card } from '@ui/Card/Card';
 import { Carousel } from '@ui/Carousel/Carousel';
 import { getRepositories } from '@utils/api';
 
 import type { IRepository } from '@types';
-
-import { useRequest } from '../../hooks/useRequest';
 
 import type { Signal } from '@octokit/types/dist-types/Signal';
 
