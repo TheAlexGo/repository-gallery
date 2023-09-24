@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { FC, JSX } from 'react';
 
 import { useDispatch } from 'react-redux';
@@ -17,9 +17,14 @@ interface IRepositoryModal {
 }
 
 export const RepositoryModal: FC<IRepositoryModal> = ({ data }): JSX.Element => {
+    const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
 
     const modalCloseHandler = () => {
+        setIsOpen(false);
+    };
+
+    const exitedHandler = () => {
         dispatch(setActiveRepository(null));
     };
 
@@ -83,10 +88,15 @@ export const RepositoryModal: FC<IRepositoryModal> = ({ data }): JSX.Element => 
         );
     };
 
+    useEffect(() => {
+        setIsOpen(data !== null);
+    }, [data]);
+
     return (
         <Modal
-            isOpen={data !== null}
+            isOpen={isOpen}
             onClose={modalCloseHandler}
+            onExited={exitedHandler}
             renderTitle={renderTitle}
             renderDescription={renderDescription}
             renderContent={renderContent}

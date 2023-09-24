@@ -1,5 +1,5 @@
+import React, { useLayoutEffect, useMemo, useRef } from 'react';
 import type { FC, JSX } from 'react';
-import React, { useMemo, useRef } from 'react';
 
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
@@ -13,6 +13,7 @@ import classes from './Modal.module.scss';
 interface IModal {
     isOpen: boolean;
     onClose: VoidFunction;
+    onExited?: VoidFunction;
     renderTitle?: () => JSX.Element | null;
     renderDescription?: () => JSX.Element | null;
     renderContent?: () => JSX.Element | null;
@@ -23,6 +24,7 @@ export const Modal: FC<IModal> = ({
     renderDescription,
     isOpen,
     onClose,
+    onExited,
     renderContent,
 }): JSX.Element | null => {
     const uuid = useMemo(() => uuidv4(), []);
@@ -31,6 +33,14 @@ export const Modal: FC<IModal> = ({
     const modalDescriptionId = `modal-description-${uuid}`;
 
     const modalRef = useRef<HTMLDivElement>(null);
+
+    useLayoutEffect(() => {
+        if (isOpen) {
+            document.documentElement.style.overflow = 'hidden';
+        } else {
+            document.documentElement.style.overflow = 'auto';
+        }
+    }, [isOpen]);
 
     return createPortal(
         <CSSTransition
@@ -45,6 +55,7 @@ export const Modal: FC<IModal> = ({
                 exit: classes['window-exit'],
                 exitActive: classes['window-exit-active'],
             }}
+            onExited={onExited}
         >
             <div className={classes.overlay} ref={modalRef}>
                 <div
