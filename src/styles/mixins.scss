@@ -1,6 +1,6 @@
 @mixin multieEllip($countOfLine, $lineHeight) {
     /* fallback */
-    max-height: $countOfLine * $lineHeight;
+    max-height: calc(#{$countOfLine} * #{$lineHeight});
     display: block;
     display: -webkit-box;
     overflow: hidden;
@@ -12,8 +12,52 @@
 }
 
 @mixin invisible() {
+    display: block;
     height: 1px;
     width: 1px;
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
+}
+
+@mixin font($size) {
+    @if $size == xs {
+        font-size: var(--fs_xs);
+        line-height: var(--lh_xs);
+    } @else if $size == s {
+        font-size: var(--fs_s);
+        line-height: var(--lh_s);
+    } @else if $size == m {
+        font-size: var(--fs_m);
+        line-height: var(--lh_m);
+    } @else if $size == l {
+        font-size: var(--fs_l);
+        line-height: var(--lh_l);
+    } @else if $size == xl {
+        font-size: var(--fs_xl);
+        line-height: var(--lh_xl);
+    }
+}
+
+@mixin setTextHeight($size, $rowsCount) {
+    @if $size == s {
+        height: calc(#{$rowsCount} * var(--lh_s));
+    } @else if $size == m {
+        height: calc(#{$rowsCount} * var(--lh_m));
+    } @else if $size == l {
+        height: calc(#{$rowsCount} * var(--lh_l));
+    }
+}
+
+@mixin useMedia($type) {
+    @if $type == mobile {
+        @content;
+    } @else if $type == tablet {
+        @media (width >= 744px) {
+            @content;
+        }
+    } @else if $type == desktop {
+        @media (width >= 1280px) {
+            @content;
+        }
+    }
 }

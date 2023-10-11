@@ -1,3 +1,5 @@
+@import 'mixins';
+
 /*
 Динамику будем хранить в css-переменных, а статику - в scss.
 css-переменные позволят нам влиять на их значения с помощью классов-модификаторов,
@@ -10,18 +12,63 @@ css-переменные позволят нам влиять на их знач
     --color_black: #000;
 
     /* Цвета проекта */
-    --color_main: #fff;
-    --color_secodary: #8caab9;
+    --color_main: var(--color_white);
+    --color_primary: #0083fc;
+    --color_background: #262a2f;
+    --color_background-dark: #1e2028;
+    --color_skeleton: #b5b5b5;
+    --color_overlay: rgb(0 0 0 / 90%);
+    --skeleton_gradient: linear-gradient(to right, transparent 0%, rgb(255 255 255 / 80%) 50%, transparent 100%);
 
     /* Шрифты */
-    --fs_xxxxs: 8px;
-    --fs_xxxs: 10px;
-    --fs_xxs: 12px;
     --fs_xs: 14px;
-    --fs_s: 16px;
+    --fs_s: 14px;
     --fs_m: 18px;
-    --fs_l: 20px;
-    --fs_xl: 22px;
-    --fs_xxl: 24px;
-    --fs_xxxl: 26px;
+    --fs_l: 30px;
+    --fs_xl: 30px;
+
+    /* Высота строки */
+    --lh_xs: 18px;
+    --lh_s: 18px;
+    --lh_m: 21px;
+    --lh_l: 36px;
+    --lh_xl: 36px;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color_main: var(--color_black);
+        --color_background: var(--color_white);
+        --color_background-dark: #eaeaea;
+    }
+}
+
+@include useMedia(tablet) {
+    :root {
+        --fs_xs: 16px;
+        --fs_s: 18px;
+        --fs_m: 30px;
+        --fs_l: 40px;
+        --fs_xl: 40px;
+        --lh_xs: 21px;
+        --lh_s: 24px;
+        --lh_m: 36px;
+        --lh_l: 47px;
+        --lh_xl: 47px;
+    }
+}
+
+@include useMedia(desktop) {
+    :root {
+        --fs_xs: 18px;
+        --fs_s: 20px;
+        --fs_m: 40px;
+        --fs_l: 40px;
+        --fs_xl: 50px;
+        --lh_xs: 24px;
+        --lh_s: 26px;
+        --lh_m: 47px;
+        --lh_l: 47px;
+        --lh_xl: 59px;
+    }
 }

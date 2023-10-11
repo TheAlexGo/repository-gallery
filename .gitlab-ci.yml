@@ -17,9 +17,11 @@ build:
     image: node:19.5.0
     stage: build
     before_script:
+        - echo "GITHUB_TOKEN=$GITHUB_TOKEN" >> .env
         - npm ci
     script:
         - npm run build
+        - rm .env
     artifacts:
         paths:
             - dist
@@ -42,7 +44,7 @@ deploy:
         name: production
     resource_group: production
     script:
-        - rsync -a --delete dist/ alex@135.181.80.44:/home/alex/todo-list
+        - rsync -a --delete dist/ alex@135.181.80.44:/home/alex/repository-gallery
     only:
         - merge_requests
         - master

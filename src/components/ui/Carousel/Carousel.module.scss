@@ -1,0 +1,88 @@
+@import '~@styles/mixins';
+
+.heading {
+    @include font(xl);
+
+    font-family: Rubik, sans-serif;
+    color: var(--color_main);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.carousel-wrapper {
+    position: relative;
+    margin-top: 24px;
+
+    &.__is-scrolling {
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+        }
+    }
+
+    @include useMedia(tablet) {
+        margin-top: 30px;
+    }
+
+    @include useMedia(desktop) {
+        margin-top: 60px;
+    }
+}
+
+.carousel {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &.__is-dragging {
+        scroll-behavior: auto;
+        scroll-snap-type: none;
+        user-select: none;
+        cursor: grab;
+    }
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.prev-item,
+.next-item {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    padding: 8px;
+    color: var(--color_main);
+    transition: padding 400ms ease-out;
+}
+
+.prev-item {
+    left: 4px;
+    transform: translateY(-50%);
+
+    @include useMedia(tablet) {
+        left: 20px;
+    }
+}
+
+.next-item {
+    right: 4px;
+    transform: translateY(-50%) rotate(180deg);
+
+    @include useMedia(tablet) {
+        right: 20px;
+    }
+}
+
+.live-region {
+    @include invisible;
+
+    color: var(--color_main);
+}

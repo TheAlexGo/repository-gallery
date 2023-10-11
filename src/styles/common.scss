@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 *,
 *::before,
@@ -15,13 +16,17 @@ html,
 body {
     margin: 0;
     padding: 0;
-    background: var(--color_background_dark);
+    background: var(--color_background);
     font-family: Inter, sans-serif;
     font-weight: 400;
 }
 
 body {
     height: 100%;
+
+    &.__is-overflow_hidden {
+        overflow: hidden;
+    }
 }
 
 /* Системные теги */
@@ -30,7 +35,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
     margin: 0;
 }
 
@@ -48,11 +54,57 @@ ul,
 ol {
     margin: 0;
     padding: 0;
+    list-style: none;
+}
+
+button {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 300ms;
 }
 
 /* /Системные теги */
 
 #root {
     min-height: 100vh;
-    padding: env(safe-area-inset-top, 0) 16px env(safe-area-inset-bottom, 0);
+    padding: env(safe-area-inset-top, 0) 0 env(safe-area-inset-bottom, 0);
+}
+
+.hidden {
+    @include invisible;
+}
+
+.skeleton-gradient {
+    background: var(--skeleton_gradient), currentcolor;
+    background-size: 200% 100%;
+    background-attachment: fixed;
+    animation: skeleton-gradient-move 0.5s ease-in infinite;
+}
+
+@keyframes skeleton-gradient-move {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+@include useMedia(tablet) {
+    main {
+        max-width: 664px;
+        margin: 0 auto;
+    }
+}
+
+@include useMedia(desktop) {
+    main {
+        max-width: 940px;
+        margin: 0 auto;
+    }
 }

@@ -1,0 +1,67 @@
+@import '~@styles/mixins';
+
+.author {
+    @include font(xs);
+
+    font-family: 'Roboto Mono', sans-serif;
+    color: var(--color_main);
+    font-weight: 500;
+}
+
+.title {
+    @include font(l);
+
+    margin-top: 4px;
+    font-family: Rubik, sans-serif;
+    color: var(--color_main);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.description {
+    @include font(s);
+
+    font-family: 'Roboto Mono', sans-serif;
+    color: var(--color_main);
+    font-weight: 500;
+}
+
+.link-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.link-icon {
+    color: var(--color_main);
+}
+
+.link {
+    @include font(s);
+
+    font-family: 'Roboto Mono', sans-serif;
+    color: var(--color_primary);
+    font-weight: 500;
+}
+
+.tags {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 4px;
+}
+
+.tag {
+    @include font(xs);
+
+    padding: 4px 8px;
+    border-radius: 8px;
+    background-color: var(--color_primary);
+    font-family: 'Roboto Mono', sans-serif;
+    color: var(--color_white);
+    font-weight: 500;
+}
+
+.achievements {
+    display: flex;
+    gap: 16px;
+}

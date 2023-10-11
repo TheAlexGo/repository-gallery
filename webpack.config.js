@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const DotEnv = require('dotenv-webpack');
 const { main, styles, types } = require('./config/aliases.js');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -76,7 +77,14 @@ module.exports = {
                 test: /\.svg$/i,
                 issuer: /\.[jt]sx?$/,
                 resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
-                use: ['@svgr/webpack'],
+                use: [
+                    {
+                        loader: '@svgr/webpack',
+                        options: {
+                            icon: true,
+                        },
+                    },
+                ],
             },
             {
                 test: /\.(ts|tsx)$/,
@@ -108,6 +116,7 @@ module.exports = {
             filename: isDevelopment ? '[name].css' : '[name].[hash].css',
             chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css',
         }),
+        new DotEnv(),
     ],
     devServer: {
         open: true,

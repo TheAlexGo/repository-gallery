@@ -1,0 +1,23 @@
+@import '~@styles/mixins';
+
+.container {
+    @include font(s);
+
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Roboto Mono', sans-serif;
+    color: var(--color_main);
+    font-weight: 500;
+}
+
+.icon {
+    flex-shrink: 0;
+}
+
+.counter {
+    &.__is-skeleton {
+        height: 1em;
+        width: 44px;
+    }
+}

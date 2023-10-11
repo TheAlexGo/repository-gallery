@@ -1,0 +1,6 @@
+.item {
+    flex-shrink: 0;
+    width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}

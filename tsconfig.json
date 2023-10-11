@@ -9,16 +9,16 @@
         "moduleResolution": "NodeNext",
         "paths": {
             "@components/*": ["components/*"],
+            "@ui/*": ["components/ui/*"],
+            "@skeleton/*": ["components/skeleton/*"],
             "@styles/*": ["styles/*"],
             "@features/*": ["features/*"],
             "@static/*": ["static/*"],
             "@icons/*": ["static/icons/*"],
-            "@fonts/*": ["static/fonts/*"],
-            "@providers/*": ["providers/*"],
-            "@services/*": ["services/*"],
-            "@pages/*": ["pages/*"],
             "@utils/*": ["utils/*"],
+            "@store/*": ["store/*"],
             "@hooks/*": ["hooks/*"],
+            "@store": ["store/index.ts"],
             "@types": ["types.ts"]
         }
     },

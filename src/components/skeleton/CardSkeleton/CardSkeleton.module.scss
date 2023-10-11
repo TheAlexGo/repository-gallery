@@ -1,0 +1,35 @@
+@import '~@styles/mixins';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    padding: 20px 44px;
+    background-color: var(--color_background-dark);
+
+    @include useMedia(tablet) {
+        padding: 30px 54px;
+    }
+}
+
+.heading {
+    @include font(m);
+    @include setTextHeight(m, 1);
+
+    width: 70%;
+    color: var(--color_primary);
+}
+
+.description {
+    @include font(s);
+    @include setTextHeight(s, 4);
+}
+
+.footer {
+    display: flex;
+    flex-flow: row;
+    gap: 16px;
+    color: var(--color_main);
+}
